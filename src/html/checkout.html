@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+</head>
+<body>
+    <script defer>
+        const params = new URLSearchParams(window.location.search);
+        const amount = params['amount'];
+        const lang = params["language"];
+
+        fetch("http://35.213.177.38:8080/checkout/create_payment_url", {
+            body: JSON.stringify({
+                amount: amount,
+                language: lang,
+            }),
+            method: "POST",
+            redirect: "follow"
+        }).then(response => {}).catch(function (err) {
+            console.log("Err", err);
+        }) 
+    </script>
+</body>
+</html>
